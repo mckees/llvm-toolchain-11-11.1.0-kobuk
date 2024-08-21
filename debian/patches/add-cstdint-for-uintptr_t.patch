@@ -1,0 +1,18 @@
+Description: Fix build error on oracular by adding cstdint
+ The Signals.h file uses contents of cstdint, but does not seem to be required
+ in prior compiler versions. This patch includes cstdint to fix the resulting
+ build errors.
+Author: Shane McKee <shane.mckee@canonical.com>
+Last-Update: 2024-08-16
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/llvm/include/llvm/Support/Signals.h
++++ b/llvm/include/llvm/Support/Signals.h
+@@ -14,6 +14,7 @@
+ #ifndef LLVM_SUPPORT_SIGNALS_H
+ #define LLVM_SUPPORT_SIGNALS_H
+ 
++#include <cstdint>
+ #include <string>
+ 
+ namespace llvm {
